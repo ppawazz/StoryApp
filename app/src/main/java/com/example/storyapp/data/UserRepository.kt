@@ -1,5 +1,6 @@
 package com.example.storyapp.data
 
+import android.util.Log
 import androidx.lifecycle.liveData
 import com.example.storyapp.data.model.ErrorResponse
 import com.example.storyapp.data.pref.UserModel
@@ -31,13 +32,13 @@ class UserRepository private constructor(
         try {
             val successResponse = apiService.login(email, password)
             emit(ResultState.Success(successResponse))
+            Log.d("tryLogin", "Login Success")
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
             val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
             val errorMessage = errorBody.message
             emit(ResultState.Error(errorMessage.toString()))
-
-            // tambahin error message toast atau log d
+            Log.d("catchLogin", errorMessage.toString())
         }
     }
 
@@ -46,13 +47,13 @@ class UserRepository private constructor(
         try {
             val successResponse = apiService.register(name, email, password)
             emit(ResultState.Success(successResponse))
+            Log.d("tryRegis", "Register Success")
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
             val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
             val errorMessage = errorBody.message
             emit(ResultState.Error(errorMessage.toString()))
-
-            // tambahin error message toast atau log d
+            Log.e("catchRegis", errorMessage.toString())
         }
     }
 

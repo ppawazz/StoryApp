@@ -2,17 +2,23 @@ package com.example.storyapp.view.signup
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import com.example.storyapp.R
+import com.example.storyapp.data.ResultState
 import com.example.storyapp.databinding.ActivitySignupBinding
+import com.example.storyapp.utils.showToast
 import com.example.storyapp.view.ViewModelFactory
+import com.example.storyapp.view.login.LoginActivity
 import com.example.storyapp.view.login.LoginViewModel
 
 class SignupActivity : AppCompatActivity() {
@@ -29,6 +35,38 @@ class SignupActivity : AppCompatActivity() {
         setupView()
         setupAction()
         playAnimation()
+        setupRegis()
+
+    }
+
+    private fun setupRegis() {
+        binding.btnSignup.setOnClickListener {
+            with(binding) {
+                if (edRegisterPassword.text!!.length >= 8) {
+                    val name = edRegisterName.text.toString()
+                    val email = edRegisterEmail.text.toString()
+                    val password = edRegisterPassword.text.toString()
+
+                    viewModel.register(name, email, password).observe(this@SignupActivity) { response ->
+                        when(response) {
+                            ResultState.Loading -> {
+                                progressBar.isVisible = true
+                            }
+                            is ResultState.Error -> {
+                                progressBar.isVisible = false
+                                showToast(response.error)
+                            }
+                            is ResultState.Success -> {
+                                progressBar.isVisible = false
+                                showToast("Akun berhasil dibuat, Silahkan Login")
+                                val toLogin = Intent(this@SignupActivity, LoginActivity::class.java)
+                                startActivity(toLogin)
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun setupView() {
@@ -45,8 +83,8 @@ class SignupActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
-        binding.signupButton.setOnClickListener {
-            val email = binding.emailEditText.text.toString()
+        binding.btnSignup.setOnClickListener {
+            val email = binding.edRegisterEmail.text.toString()
 
             AlertDialog.Builder(this).apply {
                 setTitle("Yeah!")
@@ -80,7 +118,7 @@ class SignupActivity : AppCompatActivity() {
             ObjectAnimator.ofFloat(binding.passwordTextView, View.ALPHA, 1f).setDuration(100)
         val passwordEditTextLayout =
             ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(100)
-        val signup = ObjectAnimator.ofFloat(binding.signupButton, View.ALPHA, 1f).setDuration(100)
+        val signup = ObjectAnimator.ofFloat(binding.btnSignup, View.ALPHA, 1f).setDuration(100)
 
 
         AnimatorSet().apply {

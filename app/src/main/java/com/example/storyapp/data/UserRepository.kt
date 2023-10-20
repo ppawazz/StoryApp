@@ -14,7 +14,6 @@ class UserRepository private constructor(
     private val userPreference: UserPreference,
     private val apiService: ApiService
 ) {
-
     suspend fun saveSession(user: UserModel) {
         userPreference.saveSession(user)
     }
@@ -25,6 +24,10 @@ class UserRepository private constructor(
 
     suspend fun logout() {
         userPreference.logout()
+    }
+
+    fun getStories(token: String) {
+
     }
 
     fun login(email: String, password: String) = liveData {

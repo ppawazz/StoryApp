@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.storyapp.data.UserRepository
-import com.example.storyapp.di.Injection
+import com.example.storyapp.utils.Injection
 import com.example.storyapp.view.login.LoginViewModel
 import com.example.storyapp.view.main.MainViewModel
 import com.example.storyapp.view.signup.SignupViewModel

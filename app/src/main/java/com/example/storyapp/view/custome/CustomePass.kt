@@ -1,13 +1,12 @@
-package com.example.storyapp.view
+package com.example.storyapp.view.custome
 
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
-import android.util.Patterns
 import androidx.appcompat.widget.AppCompatEditText
 
-class CustomeEmail: AppCompatEditText {
+class CustomePass: AppCompatEditText {
 
     constructor(context: Context) : super(context) {
         init()
@@ -25,8 +24,8 @@ class CustomeEmail: AppCompatEditText {
                 // Do nothing.
             }
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (!Patterns.EMAIL_ADDRESS.matcher(s).matches()) {
-                    error = "Email tidak sesuai"
+                if (s.toString().length < 8) {
+                    setError("Password tidak boleh kurang dari 8 karakter", null)
                 } else {
                     error = null
                 }

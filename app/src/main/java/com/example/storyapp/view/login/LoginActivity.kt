@@ -11,8 +11,11 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
+import com.example.storyapp.data.ResultState
 import com.example.storyapp.data.pref.UserModel
 import com.example.storyapp.databinding.ActivityLoginBinding
+import com.example.storyapp.utils.showToast
 import com.example.storyapp.view.ViewModelFactory
 import com.example.storyapp.view.main.MainActivity
 
@@ -47,19 +50,37 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.btnLogin.setOnClickListener {
-            val email = binding.edLoginEmail.text.toString()
-            viewModel.saveSession(UserModel(email, "sample_token"))
-            AlertDialog.Builder(this).apply {
-                setTitle("Yeah!")
-                setMessage("Anda berhasil login. Sudah tidak sabar untuk belajar ya?")
-                setPositiveButton("Lanjut") { _, _ ->
-                    val intent = Intent(context, MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                    startActivity(intent)
-                    finish()
+            with(binding){
+                val email = binding.edLoginEmail.text.toString()
+                val password = binding.edLoginPassword.text.toString()
+
+                viewModel.login(email, password).observe(this@LoginActivity) { response ->
+                    when (response) {
+                        ResultState.Loading -> {
+                            progressBar.isVisible = true
+                        }
+                        is ResultState.Error -> {
+                            progressBar.isVisible = false
+                            showToast(response.error)
+                        }
+                        is ResultState.Success -> {
+                            progressBar.isVisible = false
+                            viewModel.saveSession(UserModel(email, response.data.loginResult?.token.toString(), true))
+                            AlertDialog.Builder(this@LoginActivity).apply {
+                                setTitle("Hore!")
+                                setMessage("Anda berhasil login. Ayo kita mulai buat cerita")
+                                setPositiveButton("Lanjut") { _, _ ->
+                                    val intent = Intent(context, MainActivity::class.java)
+                                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                    startActivity(intent)
+                                    finish()
+                                }
+                                create()
+                                show()
+                            }
+                        }
+                    }
                 }
-                create()
-                show()
             }
         }
     }

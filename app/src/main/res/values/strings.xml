@@ -13,4 +13,11 @@
     <string name="message_main_page">Happy Reading!.</string>
     <string name="greeting">Halo %1$s,</string>
     <string name="logout">Keluar</string>
+    <string name="menu_logout">Menu Logout</string>
+    <string name="name_story">Name</string>
+    <string name="desc_story">Description</string>
+    <string name="menu_bahasa">Menu Bahasa</string>
+    <string name="galeri">Galeri</string>
+    <string name="kamera">Kamera</string>
+    <string name="unggah">Unggah</string>
 </resources>

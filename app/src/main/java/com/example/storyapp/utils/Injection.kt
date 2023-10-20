@@ -1,4 +1,4 @@
-package com.example.storyapp.di
+package com.example.storyapp.utils
 
 import android.content.Context
 import com.example.storyapp.data.UserRepository

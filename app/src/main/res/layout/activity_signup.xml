@@ -98,7 +98,7 @@
         app:startIconDrawable="@drawable/ic_baseline_email_24"
         tools:alpha="100">
 
-        <com.example.storyapp.view.CustomeEmail
+        <com.example.storyapp.view.custome.CustomeEmail
             android:id="@+id/ed_register_email"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -134,7 +134,7 @@
         app:startIconDrawable="@drawable/ic_baseline_lock_24"
         tools:alpha="100">
 
-            <com.example.storyapp.view.CustomePass
+            <com.example.storyapp.view.custome.CustomePass
                 android:id="@+id/ed_register_password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

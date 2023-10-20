@@ -35,36 +35,37 @@ class SignupActivity : AppCompatActivity() {
         setupView()
         setupAction()
         playAnimation()
-        setupRegis()
 
     }
 
-    private fun setupRegis() {
+    private fun setupAction() {
         binding.btnSignup.setOnClickListener {
             with(binding) {
-                if (edRegisterPassword.text!!.length >= 8) {
-                    val name = edRegisterName.text.toString()
-                    val email = edRegisterEmail.text.toString()
-                    val password = edRegisterPassword.text.toString()
+                val name = edRegisterName.text.toString()
+                val email = edRegisterEmail.text.toString()
+                val password = edRegisterPassword.text.toString()
 
-                    viewModel.register(name, email, password).observe(this@SignupActivity) { response ->
-                        when(response) {
+                viewModel.register(name, email, password)
+                    .observe(this@SignupActivity) { response ->
+                        when (response) {
                             ResultState.Loading -> {
                                 progressBar.isVisible = true
                             }
+
                             is ResultState.Error -> {
                                 progressBar.isVisible = false
                                 showToast(response.error)
                             }
+
                             is ResultState.Success -> {
                                 progressBar.isVisible = false
                                 showToast("Akun berhasil dibuat, Silahkan Login")
-                                val toLogin = Intent(this@SignupActivity, LoginActivity::class.java)
+                                val toLogin =
+                                    Intent(this@SignupActivity, LoginActivity::class.java)
                                 startActivity(toLogin)
                             }
                         }
                     }
-                }
             }
         }
     }
@@ -82,21 +83,6 @@ class SignupActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
-    private fun setupAction() {
-        binding.btnSignup.setOnClickListener {
-            val email = binding.edRegisterEmail.text.toString()
-
-            AlertDialog.Builder(this).apply {
-                setTitle("Yeah!")
-                setMessage("Akun dengan $email sudah jadi nih. Yuk, login dan belajar coding.")
-                setPositiveButton("Lanjut") { _, _ ->
-                    finish()
-                }
-                create()
-                show()
-            }
-        }
-    }
 
     private fun playAnimation() {
         ObjectAnimator.ofFloat(binding.imageView, View.TRANSLATION_X, -30f, 30f).apply {

@@ -76,10 +76,7 @@ class UserRepository private constructor(
             }
             emit(ResultState.Success(storyList))
         } catch (e: HttpException) {
-            val jsonInString = e.response()?.errorBody()?.string()
-            val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
-            val errorMessage = errorBody.message
-            emit(ResultState.Error(errorMessage.toString()))
+            emit(ResultState.Error(e.message.toString()))
         }
     }
 

@@ -1,2 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">StoryApp</string>
+    <string name="signup">Registrarse</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="message_welcome_page">Our Story es una aplicación para compartir historias. ¡Comparte tu historia ahora!</string>
+    <string name="title_welcome_page">Our Story</string>
+    <string name="title_signup_page">Crea una cuenta para comenzar a compartir.</string>
+    <string name="email">Correo electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="message_login_page">Por favor, inicie sesión en su cuenta.</string>
+    <string name="title_login_page">¡Comparte tu historia!</string>
+    <string name="name">Nombre</string>
+    <string name="message_main_page">¡Feliz lectura!</string>
+    <string name="greeting">Hola, %1$s,</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="menu_logout">Menú de cierre de sesión</string>
+    <string name="name_story">Nombre</string>
+    <string name="desc_story">Descripción</string>
+    <string name="select_language">Cambiar idioma</string>
+    <string name="gallery">Galería</string>
+    <string name="camera">Cámara</string>
+    <string name="upload">Subir</string>
+    <string name="login_success">Ha iniciado sesión con éxito. ¡Comencemos a crear tu historia ahora!</string>
+    <string name="congratulation">¡Felicidades!</string>
+    <string name="empty_image_warning">Por favor, agregue una imagen primero</string>
+    <string name="add_story">Añade tu historia</string>
+    <string name="enter_valid_email">Correo electrónico no válido</string>
+    <string name="pass_check">La contraseña debe tener al menos 8 caracteres</string>
+    <string name="register_success">Cuenta creada con éxito. Por favor, inicie sesión</string>
+</resources>

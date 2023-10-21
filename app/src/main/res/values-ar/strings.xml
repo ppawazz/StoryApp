@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">StoryApp</string>
+    <string name="signup">سجّل الدخول</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="message_welcome_page">Our Story هو تطبيق لمشاركة القصص. شارك قصتك الآن!</string>
+    <string name="title_welcome_page">Our Story</string>
+    <string name="title_signup_page">قم بإنشاء حساب للبدء في المشاركة.</string>
+    <string name="email">البريد الإلكتروني</string>
+    <string name="password">كلمة المرور</string>
+    <string name="message_login_page">الرجاء تسجيل الدخول إلى حسابك.</string>
+    <string name="title_login_page">شارك قصتك!</string>
+    <string name="name">الاسم</string>
+    <string name="message_main_page">قراءة ممتعة!</string>
+    <string name="greeting">مرحبًا، %1$s،</string>
+    <string name="logout">تسجيل الخروج</string>
+    <string name="menu_logout">قائمة تسجيل الخروج</string>
+    <string name="name_story">الاسم</string>
+    <string name="desc_story">الوصف</string>
+    <string name="select_language">تغيير اللغة</string>
+    <string name="gallery">المعرض</string>
+    <string name="camera">الكاميرا</string>
+    <string name="upload">تحميل</string>
+    <string name="login_success">لقد قمت بتسجيل الدخول بنجاح. لنبدأ في إنشاء قصتك!</string>
+    <string name="congratulation">تهانينا!</string>
+    <string name="empty_image_warning">الرجاء إضافة صورة أولاً</string>
+    <string name="add_story">أضف قصتك</string>
+    <string name="enter_valid_email">البريد الإلكتروني غير صالح</string>
+    <string name="pass_check">يجب أن تتألف كلمة المرور من 8 أحرف على الأقل</string>
+    <string name="register_success">تم إنشاء الحساب بنجاح. الرجاء تسجيل الدخول.</string>
+</resources>

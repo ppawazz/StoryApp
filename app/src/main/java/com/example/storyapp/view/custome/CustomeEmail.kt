@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import android.util.Patterns
 import androidx.appcompat.widget.AppCompatEditText
+import com.example.storyapp.R
 
 class CustomeEmail : AppCompatEditText {
 
@@ -32,10 +33,10 @@ class CustomeEmail : AppCompatEditText {
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (!Patterns.EMAIL_ADDRESS.matcher(s).matches()) {
-                    error = "Email tidak sesuai"
+                error = if (!Patterns.EMAIL_ADDRESS.matcher(s).matches()) {
+                    context.getString(R.string.enter_valid_email)
                 } else {
-                    error = null
+                    null
                 }
             }
 

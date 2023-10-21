@@ -60,27 +60,6 @@ class MainActivity : AppCompatActivity() {
         setupCreate()
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.option_menu, menu)
-//        return true
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return when (item.itemId) {
-//            R.id.menu1 -> {
-//                viewModel.logout()
-//                return true
-//            }
-//
-//            R.id.menu2 -> {
-//                startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
-//                return true
-//            }
-//
-//            else -> return super.onOptionsItemSelected(item)
-//        }
-//    }
-
     private fun setupAction() {
         viewModel.getSession().observe(this) { user ->
             if (!user.isLogin) {

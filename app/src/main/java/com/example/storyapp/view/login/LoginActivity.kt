@@ -76,7 +76,7 @@ class LoginActivity : AppCompatActivity() {
                                 )
                             )
                             AlertDialog.Builder(this@LoginActivity).apply {
-                                setTitle(getString(R.string.selamat))
+                                setTitle(getString(R.string.congratulation))
                                 setMessage(getString(R.string.login_success))
                                 setPositiveButton("Lanjut") { _, _ ->
                                     val intent = Intent(context, MainActivity::class.java)

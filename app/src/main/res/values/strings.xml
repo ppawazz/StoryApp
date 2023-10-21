@@ -16,12 +16,15 @@
     <string name="menu_logout">Menu Logout</string>
     <string name="name_story">Name</string>
     <string name="desc_story">Description</string>
-    <string name="menu_bahasa">Menu Bahasa</string>
-    <string name="galeri">Galeri</string>
-    <string name="kamera">Kamera</string>
-    <string name="unggah">Unggah</string>
+    <string name="select_language">Ganti Bahasa</string>
+    <string name="gallery">Galeri</string>
+    <string name="camera">Kamera</string>
+    <string name="upload">Unggah</string>
     <string name="login_success">Anda berhasil login. Ayo kita mulai buat cerita</string>
-    <string name="selamat">Selamat!</string>
+    <string name="congratulation">Selamat!</string>
     <string name="empty_image_warning">Masukan terlebih dahulu gambar</string>
-    <string name="tambahkan_cerita_anda">Tambahkan cerita anda</string>
+    <string name="add_story">Tambahkan cerita anda</string>
+    <string name="enter_valid_email">Email tidak sesuai</string>
+    <string name="pass_check">Password tidak boleh kurang dari 8 karakter</string>
+    <string name="register_success">Akun berhasil dibuat, Silahkan Login</string>
 </resources>

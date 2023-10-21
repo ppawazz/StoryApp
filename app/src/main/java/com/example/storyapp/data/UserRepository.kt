@@ -3,6 +3,7 @@ package com.example.storyapp.data
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
+import com.example.storyapp.data.model.DetailStoryResponse
 import com.example.storyapp.data.model.ErrorResponse
 import com.example.storyapp.data.model.ListStoryItem
 import com.example.storyapp.data.pref.UserModel
@@ -58,25 +59,25 @@ class UserRepository private constructor(
         }
     }
 
-    fun getStories(token: String): LiveData<ResultState<List<ListStoryItem>>> = liveData {
+    fun getStories(): LiveData<ResultState<List<ListStoryItem>>> = liveData {
+        emit(ResultState.Loading)
+        val response = apiService.getStories()
+        if (response.error == false){
+            emit(ResultState.Success(response.listStory))
+        } else {
+            emit(ResultState.Error(response.message.toString()))
+        }
+    }
+
+    fun getDetailStory(id: String) = liveData {
         emit(ResultState.Loading)
         try {
-            val response = apiService.getStories(token)
-            val stories = response.listStory
-            val storyList = stories.map { story ->
-                ListStoryItem(
-                    story.photoUrl,
-                    story.createdAt,
-                    story.name,
-                    story.description,
-                    story.lon,
-                    story.id,
-                    story.lat
-                )
-            }
-            emit(ResultState.Success(storyList))
+            val successResponse = apiService.getDetail(id).story
+            emit(ResultState.Success(successResponse))
         } catch (e: HttpException) {
-            emit(ResultState.Error(e.message.toString()))
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorResponse = Gson().fromJson(errorBody, DetailStoryResponse::class.java)
+            emit(ResultState.Error(errorResponse.message))
         }
     }
 

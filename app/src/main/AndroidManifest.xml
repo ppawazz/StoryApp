@@ -18,7 +18,7 @@
             android:name=".view.add.AddStoryActivity"
             android:exported="false" />
         <activity
-            android:name=".view.DetailStoryActivity"
+            android:name=".view.detail.DetailStoryActivity"
             android:exported="false" />
         <activity
             android:name=".view.SplashActivity"

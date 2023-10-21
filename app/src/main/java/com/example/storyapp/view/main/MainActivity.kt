@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
             } else {
-                viewModel.getStories(user.token).observe(this) { response ->
+                viewModel.getStories().observe(this) { response ->
                     with (binding) {
                         when (response) {
                             ResultState.Loading -> {

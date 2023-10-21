@@ -1,5 +1,6 @@
 package com.example.storyapp.data.retrofit
 
+import com.example.storyapp.data.model.DetailStoryResponse
 import com.example.storyapp.data.model.LoginResponse
 import com.example.storyapp.data.model.RegisterResponse
 import com.example.storyapp.data.model.StoryResponse
@@ -8,6 +9,7 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface ApiService {
     @FormUrlEncoded
@@ -26,7 +28,10 @@ interface ApiService {
     ): LoginResponse
 
     @GET("stories")
-    suspend fun getStories(
-        @Header("Authorization") token: String,
-    ): StoryResponse
+    suspend fun getStories(): StoryResponse
+
+    @GET("stories/{id}")
+    suspend fun getDetail(
+        @Path("id") id: String
+    ): DetailStoryResponse
 }

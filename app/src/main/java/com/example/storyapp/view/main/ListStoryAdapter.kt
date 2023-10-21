@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.storyapp.data.model.DetailStoryResponse
 import com.example.storyapp.data.model.ListStoryItem
 import com.example.storyapp.databinding.ItemStoryBinding
+import com.example.storyapp.view.detail.DetailStoryActivity
 
 class ListStoryAdapter :
     ListAdapter<ListStoryItem, ListStoryAdapter.StoryViewHolder>(DIFF_CALLBACK) {
@@ -21,6 +23,11 @@ class ListStoryAdapter :
                     .into(ivItemPhoto)
                 tvItemName.text = item.name
                 tvItemDesc.text = item.description
+            }
+            itemView.setOnClickListener{
+                val intent = Intent(itemView.context, DetailStoryActivity::class.java)
+                intent.putExtra(DetailStoryActivity.ID, item.id)
+                itemView.context.startActivity(intent)
             }
         }
     }

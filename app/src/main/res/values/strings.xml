@@ -20,4 +20,6 @@
     <string name="galeri">Galeri</string>
     <string name="kamera">Kamera</string>
     <string name="unggah">Unggah</string>
+    <string name="login_success">Anda berhasil login. Ayo kita mulai buat cerita</string>
+    <string name="selamat">Selamat!</string>
 </resources>

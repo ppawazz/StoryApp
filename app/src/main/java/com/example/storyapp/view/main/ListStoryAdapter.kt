@@ -22,10 +22,6 @@ class ListStoryAdapter :
                 tvItemName.text = item.name
                 tvItemDesc.text = item.description
             }
-//            itemView.setOnClickListener{
-//                val intent = Intent(itemView.context, DetailStoryActivity::class.java)
-//                intent.put
-//            }
         }
     }
 

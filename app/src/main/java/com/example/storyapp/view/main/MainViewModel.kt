@@ -18,4 +18,6 @@ class MainViewModel(private val repository: UserRepository) : ViewModel() {
             repository.logout()
         }
     }
+
+    fun getStories(token: String) = repository.getStories(token)
 }

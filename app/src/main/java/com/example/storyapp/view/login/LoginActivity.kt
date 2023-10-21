@@ -12,6 +12,7 @@ import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
+import com.example.storyapp.R
 import com.example.storyapp.data.ResultState
 import com.example.storyapp.data.pref.UserModel
 import com.example.storyapp.databinding.ActivityLoginBinding
@@ -50,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.btnLogin.setOnClickListener {
-            with(binding){
+            with(binding) {
                 val email = binding.edLoginEmail.text.toString()
                 val password = binding.edLoginPassword.text.toString()
 
@@ -59,19 +60,28 @@ class LoginActivity : AppCompatActivity() {
                         ResultState.Loading -> {
                             progressBar.isVisible = true
                         }
+
                         is ResultState.Error -> {
                             progressBar.isVisible = false
                             showToast(response.error)
                         }
+
                         is ResultState.Success -> {
                             progressBar.isVisible = false
-                            viewModel.saveSession(UserModel(email, response.data.loginResult?.token.toString(), true))
+                            viewModel.saveSession(
+                                UserModel(
+                                    email,
+                                    response.data.loginResult?.token.toString(),
+                                    true
+                                )
+                            )
                             AlertDialog.Builder(this@LoginActivity).apply {
-                                setTitle("Hore!")
-                                setMessage("Anda berhasil login. Ayo kita mulai buat cerita")
+                                setTitle(getString(R.string.selamat))
+                                setMessage(getString(R.string.login_success))
                                 setPositiveButton("Lanjut") { _, _ ->
                                     val intent = Intent(context, MainActivity::class.java)
-                                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                    intent.flags =
+                                        Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                                     startActivity(intent)
                                     finish()
                                 }

@@ -1,8 +1,10 @@
 package com.example.storyapp.data
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.example.storyapp.data.model.ErrorResponse
+import com.example.storyapp.data.model.ListStoryItem
 import com.example.storyapp.data.pref.UserModel
 import com.example.storyapp.data.pref.UserPreference
 import com.example.storyapp.data.retrofit.ApiService
@@ -24,10 +26,6 @@ class UserRepository private constructor(
 
     suspend fun logout() {
         userPreference.logout()
-    }
-
-    fun getStories(token: String) {
-
     }
 
     fun login(email: String, password: String) = liveData {
@@ -57,6 +55,31 @@ class UserRepository private constructor(
             val errorMessage = errorBody.message
             emit(ResultState.Error(errorMessage.toString()))
             Log.e("catchRegis", errorMessage.toString())
+        }
+    }
+
+    fun getStories(token: String): LiveData<ResultState<List<ListStoryItem>>> = liveData {
+        emit(ResultState.Loading)
+        try {
+            val response = apiService.getStories(token)
+            val stories = response.listStory
+            val storyList = stories.map { story ->
+                ListStoryItem(
+                    story.photoUrl,
+                    story.createdAt,
+                    story.name,
+                    story.description,
+                    story.lon,
+                    story.id,
+                    story.lat
+                )
+            }
+            emit(ResultState.Success(storyList))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
+            val errorMessage = errorBody.message
+            emit(ResultState.Error(errorMessage.toString()))
         }
     }
 

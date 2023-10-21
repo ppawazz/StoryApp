@@ -13,9 +13,12 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.storyapp.R
+import com.example.storyapp.data.ResultState
 import com.example.storyapp.databinding.ActivityMainBinding
+import com.example.storyapp.utils.showToast
 import com.example.storyapp.view.ViewModelFactory
 import com.example.storyapp.view.add.AddStoryActivity
 import com.example.storyapp.view.welcome.WelcomeActivity
@@ -23,7 +26,6 @@ import com.example.storyapp.view.welcome.WelcomeActivity
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var adapter: ListStoryAdapter
     private val viewModel by viewModels<MainViewModel> {
         ViewModelFactory.getInstance(this)
     }
@@ -40,10 +42,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.rvStory.adapter = adapter
         binding.rvStory.layoutManager = LinearLayoutManager(this)
 
         setupView()
+        setupAction()
         setupCreate()
     }
 
@@ -66,6 +68,36 @@ class MainActivity : AppCompatActivity() {
 
             else -> return super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun setupAction() {
+        viewModel.getSession().observe(this) { user ->
+            if (!user.isLogin) {
+                startActivity(Intent(this, WelcomeActivity::class.java))
+                finish()
+            } else {
+                viewModel.getStories(user.token).observe(this) { response ->
+                    with (binding) {
+                        when (response) {
+                            ResultState.Loading -> {
+                                progressBar.isVisible = true
+                            }
+                            is ResultState.Error -> {
+                                progressBar.isVisible = false
+                                showToast(response.error)
+                            }
+                            is ResultState.Success -> {
+                                progressBar.isVisible = false
+                                val adapter = ListStoryAdapter()
+                                adapter.submitList(response.data)
+                                rvStory.adapter = adapter
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
     }
     private fun setupView() {
         @Suppress("DEPRECATION")

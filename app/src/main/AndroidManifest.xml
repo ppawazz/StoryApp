@@ -21,9 +21,6 @@
             android:name=".view.DetailStoryActivity"
             android:exported="false" />
         <activity
-            android:name=".view.ListStoryActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.SplashActivity"
             android:exported="true">
             <intent-filter>

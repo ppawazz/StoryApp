@@ -22,4 +22,6 @@
     <string name="unggah">Unggah</string>
     <string name="login_success">Anda berhasil login. Ayo kita mulai buat cerita</string>
     <string name="selamat">Selamat!</string>
+    <string name="empty_image_warning">Masukan terlebih dahulu gambar</string>
+    <string name="tambahkan_cerita_anda">Tambahkan cerita anda</string>
 </resources>

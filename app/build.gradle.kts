@@ -1,7 +1,6 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-parcelize")
 }
 
 android {
@@ -36,6 +35,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -60,4 +60,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
 
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+
+    implementation("com.google.android.material:material:1.11.0-beta01")
+    implementation("androidx.exifinterface:exifinterface:1.3.6")
 }

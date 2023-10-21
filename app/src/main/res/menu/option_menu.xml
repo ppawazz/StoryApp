@@ -9,7 +9,7 @@
             app:showAsAction="ifRoom" />
         <item
             android:id="@+id/menu2"
-            app:showAsAction="never"
-            android:title="@string/menu_bahasa" />
+            android:title="@string/menu_bahasa"
+            app:showAsAction="never" />
     </group>
 </menu>

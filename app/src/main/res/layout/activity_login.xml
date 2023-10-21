@@ -118,7 +118,7 @@
             android:id="@+id/ed_login_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="start"/>
+            android:layout_gravity="start" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -161,6 +161,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

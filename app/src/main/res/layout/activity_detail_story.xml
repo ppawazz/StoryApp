@@ -12,44 +12,44 @@
         android:id="@+id/iv_detail_photo"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:scaleType="centerCrop"
         android:alpha="0"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars"
-        tools:alpha="100"/>
+        tools:alpha="100"
+        tools:src="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/tv_detail_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:alpha="0"
         android:text="@string/name_story"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:alpha="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_detail_photo"
-        tools:alpha="100"/>
+        tools:alpha="100" />
 
     <TextView
         android:id="@+id/tv_detail_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/desc_story"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:alpha="0"
+        android:text="@string/desc_story"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_detail_name"
-        tools:alpha="100"/>
+        tools:alpha="100" />
 
     <ProgressBar
         android:id="@+id/progress_bar"

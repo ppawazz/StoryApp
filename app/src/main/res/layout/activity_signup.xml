@@ -119,7 +119,7 @@
         tools:alpha="100" />
 
 
-        <com.google.android.material.textfield.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordEditTextLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
@@ -134,12 +134,12 @@
         app:startIconDrawable="@drawable/ic_baseline_lock_24"
         tools:alpha="100">
 
-            <com.example.storyapp.view.custome.CustomePass
-                android:id="@+id/ed_register_password"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"/>
-        </com.google.android.material.textfield.TextInputLayout>
+        <com.example.storyapp.view.custome.CustomePass
+            android:id="@+id/ed_register_password"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btn_signup"
@@ -179,6 +179,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,7 +15,6 @@ import com.example.storyapp.data.ResultState
 import com.example.storyapp.databinding.ActivityDetailStoryBinding
 import com.example.storyapp.utils.showToast
 import com.example.storyapp.view.ViewModelFactory
-import com.example.storyapp.view.main.MainViewModel
 
 class DetailStoryActivity : AppCompatActivity() {
 
@@ -23,6 +22,7 @@ class DetailStoryActivity : AppCompatActivity() {
     private val viewModel by viewModels<DetailViewModel> {
         ViewModelFactory.getInstance(this)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailStoryBinding.inflate(layoutInflater)
@@ -35,10 +35,10 @@ class DetailStoryActivity : AppCompatActivity() {
 
     private fun getDetail() {
         val id = intent.getStringExtra(ID)
-        with(binding){
+        with(binding) {
             id?.let {
                 viewModel.getDetail(it).observe(this@DetailStoryActivity) { response ->
-                    when(response){
+                    when (response) {
                         ResultState.Loading -> {
                             progressBar.isVisible = true
                         }
@@ -66,7 +66,8 @@ class DetailStoryActivity : AppCompatActivity() {
     private fun playAnimation() {
         val photo = ObjectAnimator.ofFloat(binding.ivDetailPhoto, View.ALPHA, 1f).setDuration(100)
         val name = ObjectAnimator.ofFloat(binding.tvDetailName, View.ALPHA, 1f).setDuration(100)
-        val description = ObjectAnimator.ofFloat(binding.tvDetailDesc, View.ALPHA, 1f).setDuration(100)
+        val description =
+            ObjectAnimator.ofFloat(binding.tvDetailDesc, View.ALPHA, 1f).setDuration(100)
 
         AnimatorSet().apply {
             playSequentially(
@@ -77,6 +78,7 @@ class DetailStoryActivity : AppCompatActivity() {
             startDelay = 100
         }.start()
     }
+
     private fun setupView() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -89,6 +91,7 @@ class DetailStoryActivity : AppCompatActivity() {
         }
         supportActionBar?.hide()
     }
+
     companion object {
         const val ID = "id_extra"
     }

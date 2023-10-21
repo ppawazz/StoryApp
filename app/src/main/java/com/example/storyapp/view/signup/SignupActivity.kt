@@ -9,17 +9,13 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
-import com.example.storyapp.R
 import com.example.storyapp.data.ResultState
 import com.example.storyapp.databinding.ActivitySignupBinding
 import com.example.storyapp.utils.showToast
 import com.example.storyapp.view.ViewModelFactory
 import com.example.storyapp.view.login.LoginActivity
-import com.example.storyapp.view.login.LoginViewModel
 
 class SignupActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding

@@ -41,4 +41,5 @@
     <string name="add_gallery_description">Tombol tambah melalui galeri</string>
     <string name="add_desc_description">Masukan deskripsi gambar</string>
     <string name="btn_upload_description">Tombol unggah gambar</string>
+    <string name="next">Lanjut</string>
 </resources>

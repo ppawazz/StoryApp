@@ -84,10 +84,8 @@ class LoginActivity : AppCompatActivity() {
                             AlertDialog.Builder(this@LoginActivity).apply {
                                 setTitle(getString(R.string.congratulation))
                                 setMessage(getString(R.string.login_success))
-                                setPositiveButton("Lanjut") { _, _ ->
-                                    val intent = Intent(context, MainActivity::class.java)
-                                    intent.flags =
-                                        Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                setPositiveButton(getString(R.string.next)) { _, _ ->
+                                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                     startActivity(intent)
                                     finish()
                                 }

@@ -42,4 +42,5 @@
     <string name="add_gallery_description">إضافة عبر زر المعرض</string>
     <string name="add_desc_description">أدخل وصف الصورة</string>
     <string name="btn_upload_description">زر تحميل الصورة</string>
+    <string name="next">حمل</string>
 </resources>

@@ -42,5 +42,5 @@
     <string name="add_gallery_description">Ajouter via le bouton Galerie</string>
     <string name="add_desc_description">Saisissez la description de l\'image</string>
     <string name="btn_upload_description">Bouton de Téléchargement d\'Image</string>
-
+    <string name="next">continuer</string>
 </resources>

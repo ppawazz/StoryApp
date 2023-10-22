@@ -28,4 +28,18 @@
     <string name="enter_valid_email">البريد الإلكتروني غير صالح</string>
     <string name="pass_check">يجب أن تتألف كلمة المرور من 8 أحرف على الأقل</string>
     <string name="register_success">تم إنشاء الحساب بنجاح. الرجاء تسجيل الدخول.</string>
+    <string name="btn_login_description">زر تسجيل الدخول</string>
+    <string name="add_email_description">أدخل بريدك الإلكتروني</string>
+    <string name="add_password_description">أدخل كلمة المرور</string>
+    <string name="register_email_description">أدخل البريد الإلكتروني</string>
+    <string name="register_name_description">أدخل اسم المستخدم</string>
+    <string name="register_password_description">أدخل كلمة المرور</string>
+    <string name="btn_register_description">زر التسجيل</string>
+    <string name="enter_login_description">اضغط لتسجيل الدخول</string>
+    <string name="enter_register_description">اضغط لإنشاء حساب</string>
+    <string name="add_image_description">هذه هي الصورة المعروضة</string>
+    <string name="btn_add_camera">زر إضافة صورة عبر الكاميرا</string>
+    <string name="add_gallery_description">إضافة عبر زر المعرض</string>
+    <string name="add_desc_description">أدخل وصف الصورة</string>
+    <string name="btn_upload_description">زر تحميل الصورة</string>
 </resources>

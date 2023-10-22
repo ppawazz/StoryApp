@@ -29,6 +29,14 @@ class SignupActivity : AppCompatActivity() {
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.apply {
+            btnSignup.contentDescription = getString(R.string.btn_register_description)
+            emailEditTextLayout.contentDescription = getString(R.string.register_email_description)
+            passwordEditTextLayout.contentDescription =
+                getString(R.string.register_password_description)
+            nameEditTextLayout.contentDescription = getString(R.string.register_name_description)
+        }
+
         setupView()
         setupAction()
         playAnimation()

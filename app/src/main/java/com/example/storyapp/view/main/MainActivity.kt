@@ -30,6 +30,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.apply {
+            fabCreate.contentDescription = getString(R.string.add_story)
+        }
+
         viewModel.getSession().observe(this) { user ->
             if (!user.isLogin) {
                 startActivity(Intent(this, WelcomeActivity::class.java))

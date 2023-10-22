@@ -27,4 +27,18 @@
     <string name="enter_valid_email">Email tidak sesuai</string>
     <string name="pass_check">Password tidak boleh kurang dari 8 karakter</string>
     <string name="register_success">Akun berhasil dibuat, Silahkan Login</string>
+    <string name="btn_login_description">Tombol masuk</string>
+    <string name="add_email_description">Masukan email</string>
+    <string name="add_password_description">Masukan password</string>
+    <string name="register_email_description">Masukan email</string>
+    <string name="register_name_description">Masukan nama pengguna</string>
+    <string name="register_password_description">Masukan password</string>
+    <string name="btn_register_description">Tombol daftar</string>
+    <string name="enter_login_description">Tekan Untuk Masuk</string>
+    <string name="enter_register_description">Tekan untuk buat akun</string>
+    <string name="add_image_description">Ini adalah gambar yang di tampilkan</string>
+    <string name="btn_add_camera">Tombol tambah gambar melalui kamera</string>
+    <string name="add_gallery_description">Tombol tambah melalui galeri</string>
+    <string name="add_desc_description">Masukan deskripsi gambar</string>
+    <string name="btn_upload_description">Tombol unggah gambar</string>
 </resources>

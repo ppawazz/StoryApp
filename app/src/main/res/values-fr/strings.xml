@@ -28,4 +28,19 @@
     <string name="enter_valid_email">Adresse e-mail non valide</string>
     <string name="pass_check">Le mot de passe doit comporter au moins 8 caractères</string>
     <string name="register_success">Compte créé avec succès. Veuillez vous connecter.</string>
+    <string name="btn_login_description">Bouton de Connexion</string>
+    <string name="add_email_description">Saisissez votre adresse e-mail</string>
+    <string name="add_password_description">Saisissez votre mot de passe</string>
+    <string name="register_email_description">Entrez votre adresse e-mail</string>
+    <string name="register_name_description">Entrez votre nom d\'utilisateur</string>
+    <string name="register_password_description">Entrez votre mot de passe</string>
+    <string name="btn_register_description">Bouton d\'Inscription</string>
+    <string name="enter_login_description">Appuyez pour vous connecter</string>
+    <string name="enter_register_description">Appuyez pour créer un compte</string>
+    <string name="add_image_description">Il s\'agit de l\'image affichée</string>
+    <string name="btn_add_camera">Bouton Ajouter une image via l\'appareil photo</string>
+    <string name="add_gallery_description">Ajouter via le bouton Galerie</string>
+    <string name="add_desc_description">Saisissez la description de l\'image</string>
+    <string name="btn_upload_description">Bouton de Téléchargement d\'Image</string>
+
 </resources>

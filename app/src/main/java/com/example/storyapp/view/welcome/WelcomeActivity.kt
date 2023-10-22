@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import com.example.storyapp.R
 import com.example.storyapp.databinding.ActivityWelcomeBinding
 import com.example.storyapp.view.login.LoginActivity
 import com.example.storyapp.view.signup.SignupActivity
@@ -20,6 +21,11 @@ class WelcomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.apply {
+            loginButton.contentDescription = getString(R.string.enter_login_description)
+            signupButton.contentDescription = getString(R.string.enter_register_description)
+        }
 
         setupView()
         setupAction()

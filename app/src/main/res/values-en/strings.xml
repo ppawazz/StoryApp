@@ -28,4 +28,18 @@
     <string name="enter_valid_email">Invalid email</string>
     <string name="pass_check">Password should be at least 8 characters</string>
     <string name="register_success">Account created successfully. Please log in</string>
+    <string name="btn_login_description">Login Button</string>
+    <string name="add_email_description">Enter your email</string>
+    <string name="add_password_description">Enter your password</string>
+    <string name="register_email_description">Enter email</string>
+    <string name="register_name_description">Enter username</string>
+    <string name="register_password_description">Enter password</string>
+    <string name="btn_register_description">Register Button</string>
+    <string name="enter_login_description">Press to Log In</string>
+    <string name="enter_register_description">Press to Create an Account</string>
+    <string name="add_image_description">This is the displayed image</string>
+    <string name="btn_add_camera">Add Image via Camera Button</string>
+    <string name="add_gallery_description">Add via Gallery Button</string>
+    <string name="add_desc_description">Enter image description</string>
+    <string name="btn_upload_description">Upload Image Button</string>
 </resources>

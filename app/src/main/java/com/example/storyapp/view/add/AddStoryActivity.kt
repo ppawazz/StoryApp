@@ -38,6 +38,14 @@ class AddStoryActivity : AppCompatActivity() {
         binding = ActivityAddStoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.apply {
+            uploadImage.contentDescription = getString(R.string.add_image_description)
+            btnCamera.contentDescription = getString(R.string.btn_add_camera)
+            btnGallery.contentDescription = getString(R.string.add_gallery_description)
+            textDescInput.contentDescription = getString(R.string.add_desc_description)
+            buttonAdd.contentDescription = getString(R.string.btn_upload_description)
+        }
+
         setupView()
         playAnimation()
         binding.btnGallery.setOnClickListener {
@@ -66,8 +74,9 @@ class AddStoryActivity : AppCompatActivity() {
                             is ResultState.Success -> {
                                 binding.progressIndicator.isVisible = false
                                 showToast(response.data.message)
-                                val toMain =
-                                    Intent(this@AddStoryActivity, MainActivity::class.java)
+                                val toMain = Intent(this, MainActivity::class.java)
+                                toMain.flags =
+                                    Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                                 startActivity(toMain)
                             }
 

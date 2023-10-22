@@ -31,6 +31,12 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.apply {
+            btnLogin.contentDescription = getString(R.string.btn_login_description)
+            emailEditTextLayout.contentDescription = getString(R.string.add_email_description)
+            passwordEditTextLayout.contentDescription = getString(R.string.add_password_description)
+        }
+
         setupView()
         setupAction()
         playAnimation()

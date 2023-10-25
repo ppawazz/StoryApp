@@ -2,6 +2,7 @@ package com.example.storyapp.view.detail
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,16 +29,23 @@ class DetailStoryActivity : AppCompatActivity() {
         binding = ActivityDetailStoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupView()
-        getDetail()
-        playAnimation()
+        viewModel.getSession().observe(this) { user ->
+            if (!user.isLogin) {
+                startActivity(Intent(this, DetailStoryActivity::class.java))
+                finish()
+            } else {
+                setupView()
+                getDetail(user.token)
+                playAnimation()
+            }
+        }
     }
 
-    private fun getDetail() {
+    private fun getDetail(token: String) {
         val id = intent.getStringExtra(ID)
         with(binding) {
             id?.let {
-                viewModel.getDetail(it).observe(this@DetailStoryActivity) { response ->
+                viewModel.getDetail(token, id).observe(this@DetailStoryActivity) { response ->
                     when (response) {
                         ResultState.Loading -> {
                             progressBar.isVisible = true

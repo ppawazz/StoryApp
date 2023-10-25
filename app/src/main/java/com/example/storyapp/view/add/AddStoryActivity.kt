@@ -46,25 +46,32 @@ class AddStoryActivity : AppCompatActivity() {
             buttonAdd.contentDescription = getString(R.string.btn_upload_description)
         }
 
-        setupView()
-        playAnimation()
-        binding.btnGallery.setOnClickListener {
-            startGallery()
+        viewModel.getSession().observe(this) { user ->
+            if (!user.isLogin) {
+                startActivity(Intent(this, AddStoryActivity::class.java))
+                finish()
+            } else {
+                setupView()
+                playAnimation()
+                binding.btnGallery.setOnClickListener {
+                    startGallery()
+                }
+                binding.btnCamera.setOnClickListener {
+                    startCamera()
+                }
+                uploadImage(user.token)
+            }
         }
-        binding.btnCamera.setOnClickListener {
-            startCamera()
-        }
-        uploadImage()
     }
 
-    private fun uploadImage() {
+    private fun uploadImage(token: String) {
         binding.buttonAdd.setOnClickListener {
             currentImageUri?.let { uri ->
                 val imageFile = uriToFile(uri, this).reduceFileImage()
                 Log.d("Image File", "showImage: ${imageFile.path}")
                 val description = binding.edAddDescription.text.toString()
 
-                viewModel.uploadImage(imageFile, description).observe(this) { response ->
+                viewModel.uploadImage(token, imageFile, description).observe(this) { response ->
                     if (response != null) {
                         when (response) {
                             is ResultState.Loading -> {
@@ -138,22 +145,17 @@ class AddStoryActivity : AppCompatActivity() {
 
         AnimatorSet().apply {
             playTogether(
-                camera,
-                gallery
+                camera, gallery
             )
             playSequentially(
-                photo,
-                description,
-                descEditTextLayout,
-                upload
+                photo, description, descEditTextLayout, upload
             )
             startDelay = 100
         }.start()
     }
 
     private fun setupView() {
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        @Suppress("DEPRECATION") if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())
         } else {
             window.setFlags(

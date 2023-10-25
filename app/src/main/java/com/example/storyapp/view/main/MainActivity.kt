@@ -38,62 +38,55 @@ class MainActivity : AppCompatActivity() {
             if (!user.isLogin) {
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
-            }
-        }
+            } else {
 
-        binding.rvStory.layoutManager = LinearLayoutManager(this)
+                binding.rvStory.layoutManager = LinearLayoutManager(this)
 
-        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.menu1 -> {
-                    viewModel.logout()
-                    true
+                binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+                    when (menuItem.itemId) {
+                        R.id.menu1 -> {
+                            viewModel.logout()
+                            true
+                        }
+
+                        R.id.menu2 -> {
+                            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                            true
+                        }
+
+                        else -> false
+                    }
                 }
 
-                R.id.menu2 -> {
-                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
-                    true
-                }
-
-                else -> false
+                setupView()
+                setupAction(user.token)
+                setupCreate()
             }
         }
-
-        setupView()
-        setupAction()
-        setupCreate()
     }
 
-    private fun setupAction() {
-        viewModel.getSession().observe(this) { user ->
-            if (!user.isLogin) {
-                startActivity(Intent(this, WelcomeActivity::class.java))
-                finish()
-            } else {
-                viewModel.getStories().observe(this) { response ->
-                    with(binding) {
-                        when (response) {
-                            ResultState.Loading -> {
-                                progressBar.isVisible = true
-                            }
+    private fun setupAction(token: String) {
+        viewModel.getStories(token).observe(this) { response ->
+            with(binding) {
+                when (response) {
+                    ResultState.Loading -> {
+                        progressBar.isVisible = true
+                    }
 
-                            is ResultState.Error -> {
-                                progressBar.isVisible = false
-                                showToast(response.error)
-                            }
+                    is ResultState.Error -> {
+                        progressBar.isVisible = false
+                        showToast(response.error)
+                    }
 
-                            is ResultState.Success -> {
-                                progressBar.isVisible = false
-                                val adapter = ListStoryAdapter()
-                                adapter.submitList(response.data)
-                                rvStory.adapter = adapter
-                            }
-                        }
+                    is ResultState.Success -> {
+                        progressBar.isVisible = false
+                        val adapter = ListStoryAdapter()
+                        adapter.submitList(response.data)
+                        rvStory.adapter = adapter
                     }
                 }
             }
         }
-
     }
 
     private fun setupView() {

@@ -19,5 +19,5 @@ class MainViewModel(private val repository: UserRepository) : ViewModel() {
         }
     }
 
-    fun getStories() = repository.getStories()
+    fun getStories(token: String) = repository.getStories(token)
 }

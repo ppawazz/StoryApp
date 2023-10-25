@@ -85,7 +85,8 @@ class LoginActivity : AppCompatActivity() {
                                 setTitle(getString(R.string.congratulation))
                                 setMessage(getString(R.string.login_success))
                                 setPositiveButton(getString(R.string.next)) { _, _ ->
-                                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                    val intent =
+                                        Intent(this@LoginActivity, MainActivity::class.java)
                                     startActivity(intent)
                                     finish()
                                 }

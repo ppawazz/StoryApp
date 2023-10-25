@@ -5,6 +5,8 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.view.Menu
+import android.view.MenuItem
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.activity.viewModels
@@ -39,30 +41,30 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
             } else {
-
                 binding.rvStory.layoutManager = LinearLayoutManager(this)
-
-                binding.topAppBar.setOnMenuItemClickListener { menuItem ->
-                    when (menuItem.itemId) {
-                        R.id.menu1 -> {
-                            viewModel.logout()
-                            true
-                        }
-
-                        R.id.menu2 -> {
-                            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
-                            true
-                        }
-
-                        else -> false
-                    }
-                }
-
                 setupView()
                 setupAction(user.token)
                 setupCreate()
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.option_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu1 -> {
+                viewModel.logout()
+            }
+
+            R.id.menu2 -> {
+                startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+            }
+        }
+        return true
     }
 
     private fun setupAction(token: String) {
@@ -99,7 +101,6 @@ class MainActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
         }
-        supportActionBar?.hide()
     }
 
     private fun setupCreate() {

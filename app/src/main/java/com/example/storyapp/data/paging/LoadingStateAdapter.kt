@@ -8,12 +8,15 @@ import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.storyapp.databinding.ItemLoadingBinding
 
-class LoadingStateAdapter(private val retry: () -> Unit) : LoadStateAdapter<LoadingStateAdapter.LoadingViewHolder>() {
-    class LoadingViewHolder(private val binding: ItemLoadingBinding, retry: () -> Unit) : RecyclerView.ViewHolder(binding.root) {
+class LoadingStateAdapter(private val retry: () -> Unit) :
+    LoadStateAdapter<LoadingStateAdapter.LoadingViewHolder>() {
+    class LoadingViewHolder(private val binding: ItemLoadingBinding, retry: () -> Unit) :
+        RecyclerView.ViewHolder(binding.root) {
         init {
             binding.retryButton.setOnClickListener { retry.invoke() }
         }
-        fun bind (loadState: LoadState) {
+
+        fun bind(loadState: LoadState) {
             if (loadState is LoadState.Error) {
                 binding.errorMsg.text = loadState.error.localizedMessage
             }

@@ -13,7 +13,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import com.example.storyapp.R
-import com.example.storyapp.data.ResultState
+import com.example.storyapp.utils.ResultState
 import com.example.storyapp.data.pref.UserModel
 import com.example.storyapp.databinding.ActivityLoginBinding
 import com.example.storyapp.utils.showToast

@@ -43,4 +43,12 @@
     <string name="add_desc_description">Enter image description</string>
     <string name="btn_upload_description">Upload Image Button</string>
     <string name="next">Next</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="check_maps">Check Maps</string>
+    <string name="normal_type">Normal</string>
+    <string name="satellite_type">Satellite</string>
+    <string name="terrain_type">Terrain</string>
+    <string name="hybrid_type">Hybrid</string>
+    <string name="detail_image_description">This is user detail information</string>
+    <string name="retry">Retry</string>
 </resources>

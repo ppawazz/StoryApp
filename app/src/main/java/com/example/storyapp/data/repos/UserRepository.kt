@@ -1,12 +1,14 @@
-package com.example.storyapp.data
+package com.example.storyapp.data.repos
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
+import com.example.storyapp.data.local.StoryDatabase
 import com.example.storyapp.data.model.DetailStoryResponse
 import com.example.storyapp.data.model.ErrorResponse
 import com.example.storyapp.data.model.ListStoryItem
@@ -15,7 +17,8 @@ import com.example.storyapp.data.model.StoryResponse
 import com.example.storyapp.data.pref.UserModel
 import com.example.storyapp.data.pref.UserPreference
 import com.example.storyapp.data.retrofit.ApiService
-import com.example.storyapp.data.paging.StoryPagingSource
+import com.example.storyapp.data.paging.StoryRemoteMediator
+import com.example.storyapp.utils.ResultState
 import com.google.gson.Gson
 import kotlinx.coroutines.flow.Flow
 import okhttp3.MediaType.Companion.toMediaType
@@ -27,7 +30,8 @@ import java.io.File
 
 class UserRepository private constructor(
     private val userPreference: UserPreference,
-    private val apiService: ApiService
+    private val apiService: ApiService,
+    private val storyDatabase: StoryDatabase
 ) {
     suspend fun saveSession(user: UserModel) {
         userPreference.saveSession(user)
@@ -71,23 +75,15 @@ class UserRepository private constructor(
         }
     }
 
-//    fun getStories(token: String): LiveData<ResultState<List<ListStoryItem>>> = liveData {
-//        emit(ResultState.Loading)
-//        val response = apiService.getStories("Bearer $token")
-//        if (response.error == false) {
-//            emit(ResultState.Success(response.listStory))
-//        } else {
-//            emit(ResultState.Error(response.message.toString()))
-//        }
-//    }
-
+    @OptIn(ExperimentalPagingApi::class)
     fun getStories(token: String): LiveData<PagingData<ListStoryItem>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 5
             ),
+            remoteMediator = StoryRemoteMediator(apiService, storyDatabase, "Bearer $token"),
             pagingSourceFactory = {
-                StoryPagingSource(apiService, "Bearer $token")
+                storyDatabase.storyDao().getAllStory()
             }
         ).liveData
     }
@@ -141,10 +137,11 @@ class UserRepository private constructor(
         private var instance: UserRepository? = null
         fun getInstance(
             userPreference: UserPreference,
-            apiService: ApiService
+            apiService: ApiService,
+            storyDatabase: StoryDatabase
         ): UserRepository =
             instance ?: synchronized(this) {
-                instance ?: UserRepository(userPreference, apiService)
+                instance ?: UserRepository(userPreference, apiService, storyDatabase)
             }.also { instance = it }
     }
 }

@@ -43,4 +43,12 @@
     <string name="add_desc_description">أدخل وصف الصورة</string>
     <string name="btn_upload_description">زر تحميل الصورة</string>
     <string name="next">حمل</string>
+    <string name="title_activity_maps">أنشطة الخرائط</string>
+    <string name="check_maps">تحقق من الخرائط</string>
+    <string name="normal_type">عادي</string>
+    <string name="satellite_type">الأقمار الصناعية</string>
+    <string name="terrain_type">التضاريس</string>
+    <string name="hybrid_type">هجين</string>
+    <string name="detail_image_description">هذا هو تفاصيل وصف الصورة</string>
+    <string name="retry">أعد المحاولة</string>
 </resources>

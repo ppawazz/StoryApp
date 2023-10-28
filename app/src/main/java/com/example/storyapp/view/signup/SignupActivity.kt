@@ -12,7 +12,7 @@ import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import com.example.storyapp.R
-import com.example.storyapp.data.ResultState
+import com.example.storyapp.utils.ResultState
 import com.example.storyapp.databinding.ActivitySignupBinding
 import com.example.storyapp.utils.showToast
 import com.example.storyapp.utils.ViewModelFactory

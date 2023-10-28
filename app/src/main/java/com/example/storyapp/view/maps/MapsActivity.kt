@@ -11,10 +11,8 @@ import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.storyapp.R
-import com.example.storyapp.data.ResultState
-
+import com.example.storyapp.utils.ResultState
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -52,6 +50,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         onBackPressed()
         return true
     }
+
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
@@ -79,24 +78,29 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         menuInflater.inflate(R.menu.maps_menu, menu)
         return true
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.normal_type -> {
                 mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
                 true
             }
+
             R.id.satellite_type -> {
                 mMap.mapType = GoogleMap.MAP_TYPE_SATELLITE
                 true
             }
+
             R.id.terrain_type -> {
                 mMap.mapType = GoogleMap.MAP_TYPE_TERRAIN
                 true
             }
+
             R.id.hybrid_type -> {
                 mMap.mapType = GoogleMap.MAP_TYPE_HYBRID
                 true
             }
+
             else -> {
                 super.onOptionsItemSelected(item)
             }
@@ -106,13 +110,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun setMarker(token: String) {
         viewModel.getStoriesLocation(token).observe(this) { result ->
             if (result != null) {
-                when(result) {
+                when (result) {
                     ResultState.Loading -> {
                         // do nothing
                     }
+
                     is ResultState.Error -> {
                         showToast(result.error)
                     }
+
                     is ResultState.Success -> {
                         val story = result.data
                         story.listStory.forEach { list ->
@@ -162,6 +168,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             Log.e(TAG, "Can't find style. Error: ", exception)
         }
     }
+
     companion object {
         private const val TAG = "MapsActivity"
     }

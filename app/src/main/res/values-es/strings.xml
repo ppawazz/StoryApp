@@ -43,4 +43,12 @@
     <string name="add_desc_description">Ingrese la descripción de la imagen</string>
     <string name="btn_upload_description">Botón de Carga de Imagen</string>
     <string name="next">continuar</string>
+    <string name="title_activity_maps">Actividad de mapas</string>
+    <string name="check_maps">Verificar mapas</string>
+    <string name="normal_type">Normal</string>
+    <string name="satellite_type">Satélite</string>
+    <string name="terrain_type">Terreno</string>
+    <string name="hybrid_type">Híbrido</string>
+    <string name="detail_image_description">Esta es información detallada del usuario</string>
+    <string name="retry">Reintentar</string>
 </resources>

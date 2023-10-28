@@ -3,11 +3,10 @@ package com.example.storyapp.data.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.storyapp.data.model.ListStoryItem
-import com.example.storyapp.data.pref.UserPreference
 import com.example.storyapp.data.retrofit.ApiService
-import kotlinx.coroutines.flow.first
 
-class StoryPagingSource(private val apiService: ApiService, private val token: String) : PagingSource<Int, ListStoryItem>() {
+class StoryPagingSource(private val apiService: ApiService, private val token: String) :
+    PagingSource<Int, ListStoryItem>() {
     override fun getRefreshKey(state: PagingState<Int, ListStoryItem>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
@@ -28,6 +27,7 @@ class StoryPagingSource(private val apiService: ApiService, private val token: S
             return LoadResult.Error(e)
         }
     }
+
     private companion object {
         const val INITIAL_PAGE_INDEX = 1
     }

@@ -13,7 +13,7 @@ import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.example.storyapp.R
-import com.example.storyapp.data.ResultState
+import com.example.storyapp.utils.ResultState
 import com.example.storyapp.databinding.ActivityDetailStoryBinding
 import com.example.storyapp.utils.showToast
 import com.example.storyapp.utils.ViewModelFactory

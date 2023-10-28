@@ -1,39 +1,45 @@
 package com.example.storyapp.data.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "story")
 data class StoryResponse(
 
+    @PrimaryKey
     @field:SerializedName("listStory")
-    val listStory: List<ListStoryItem> = emptyList(),
+    val listStory: List<ListStoryItem>,
 
     @field:SerializedName("error")
-    val error: Boolean? = null,
+    val error: Boolean,
 
     @field:SerializedName("message")
-    val message: String? = null
+    val message: String
 )
 
+@Entity(tableName = "story")
 data class ListStoryItem(
 
     @field:SerializedName("photoUrl")
-    val photoUrl: String? = null,
+    val photoUrl: String,
 
     @field:SerializedName("createdAt")
-    val createdAt: String? = null,
+    val createdAt: String,
 
     @field:SerializedName("name")
-    val name: String? = null,
+    val name: String,
 
     @field:SerializedName("description")
-    val description: String? = null,
+    val description: String,
 
     @field:SerializedName("lon")
-    val lon: Double? = null,
+    val lon: Double,
 
+    @PrimaryKey
     @field:SerializedName("id")
-    val id: String? = null,
+    val id: String,
 
     @field:SerializedName("lat")
-    val lat: Double? = null
+    val lat: Double
 )

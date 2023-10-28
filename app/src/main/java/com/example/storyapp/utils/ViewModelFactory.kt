@@ -3,7 +3,7 @@ package com.example.storyapp.utils
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.storyapp.data.UserRepository
+import com.example.storyapp.data.repos.UserRepository
 import com.example.storyapp.view.add.AddViewModel
 import com.example.storyapp.view.detail.DetailViewModel
 import com.example.storyapp.view.login.LoginViewModel
@@ -36,6 +36,7 @@ class ViewModelFactory(private val repository: UserRepository) :
             modelClass.isAssignableFrom(AddViewModel::class.java) -> {
                 AddViewModel(repository) as T
             }
+
             modelClass.isAssignableFrom(MapsViewModel::class.java) -> {
                 MapsViewModel(repository) as T
             }

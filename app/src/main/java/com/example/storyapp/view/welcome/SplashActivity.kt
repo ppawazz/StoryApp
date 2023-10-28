@@ -1,4 +1,4 @@
-package com.example.storyapp.view
+package com.example.storyapp.view.welcome
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

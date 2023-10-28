@@ -16,8 +16,10 @@ import com.example.storyapp.R
 import com.example.storyapp.data.ResultState
 import com.example.storyapp.databinding.ActivityMainBinding
 import com.example.storyapp.utils.showToast
-import com.example.storyapp.view.ViewModelFactory
+import com.example.storyapp.utils.ViewModelFactory
 import com.example.storyapp.view.add.AddStoryActivity
+import com.example.storyapp.view.maps.MapsActivity
+import com.example.storyapp.data.paging.LoadingStateAdapter
 import com.example.storyapp.view.welcome.WelcomeActivity
 
 class MainActivity : AppCompatActivity() {
@@ -49,6 +51,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupAction(token: String) {
+        val adapter = ListStoryAdapter()
+        binding.rvStory.adapter = adapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                adapter.retry()
+            }
+        )
+        viewModel.getStories(token).observe(this@MainActivity) {
+            adapter.submitData(lifecycle,it)
+        }
+        binding.rvStory.adapter = adapter
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.option_menu, menu)
         return true
@@ -63,33 +78,43 @@ class MainActivity : AppCompatActivity() {
             R.id.menu2 -> {
                 startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
             }
+            R.id.menu3 -> {
+                startActivity(Intent(this, MapsActivity::class.java))
+            }
         }
         return true
     }
 
-    private fun setupAction(token: String) {
-        viewModel.getStories(token).observe(this) { response ->
-            with(binding) {
-                when (response) {
-                    ResultState.Loading -> {
-                        progressBar.isVisible = true
-                    }
-
-                    is ResultState.Error -> {
-                        progressBar.isVisible = false
-                        showToast(response.error)
-                    }
-
-                    is ResultState.Success -> {
-                        progressBar.isVisible = false
-                        val adapter = ListStoryAdapter()
-                        adapter.submitList(response.data)
-                        rvStory.adapter = adapter
-                    }
-                }
-            }
-        }
-    }
+//    private fun setupAction(token: String) {
+//        viewModel.getStories(token).observe(this) { response ->
+//            with(binding) {
+//                when (response) {
+//                    ResultState.Loading -> {
+//                        progressBar.isVisible = true
+//                    }
+//
+//                    is ResultState.Error -> {
+//                        progressBar.isVisible = false
+//                        showToast(response.error)
+//                    }
+//
+//                    is ResultState.Success -> {
+//                        progressBar.isVisible = false
+//                        val adapter = ListStoryAdapter()
+//                        rvStory.adapter = adapter.withLoadStateFooter(
+//                            footer = LoadingStateAdapter {
+//                                adapter.retry()
+//                            }
+//                        )
+//                        viewModel.getStories(token).observe(this@MainActivity) {
+//                            adapter.submitData(lifecycle,it)
+//                        }
+//                        rvStory.adapter = adapter
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     private fun setupView() {
         @Suppress("DEPRECATION")

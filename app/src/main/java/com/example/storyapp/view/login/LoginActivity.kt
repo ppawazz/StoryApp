@@ -17,7 +17,7 @@ import com.example.storyapp.data.ResultState
 import com.example.storyapp.data.pref.UserModel
 import com.example.storyapp.databinding.ActivityLoginBinding
 import com.example.storyapp.utils.showToast
-import com.example.storyapp.view.ViewModelFactory
+import com.example.storyapp.utils.ViewModelFactory
 import com.example.storyapp.view.main.MainActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -25,7 +25,6 @@ class LoginActivity : AppCompatActivity() {
         ViewModelFactory.getInstance(this)
     }
     private lateinit var binding: ActivityLoginBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)

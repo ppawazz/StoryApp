@@ -12,10 +12,11 @@ import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
+import com.example.storyapp.R
 import com.example.storyapp.data.ResultState
 import com.example.storyapp.databinding.ActivityDetailStoryBinding
 import com.example.storyapp.utils.showToast
-import com.example.storyapp.view.ViewModelFactory
+import com.example.storyapp.utils.ViewModelFactory
 
 class DetailStoryActivity : AppCompatActivity() {
 
@@ -28,6 +29,11 @@ class DetailStoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailStoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        binding.apply {
+            ivDetailPhoto.contentDescription = getString(R.string.detail_image_description)
+        }
 
         viewModel.getSession().observe(this) { user ->
             if (!user.isLogin) {
@@ -39,6 +45,11 @@ class DetailStoryActivity : AppCompatActivity() {
                 playAnimation()
             }
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun getDetail(token: String) {
@@ -97,7 +108,6 @@ class DetailStoryActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
         }
-        supportActionBar?.hide()
     }
 
     companion object {

@@ -3,13 +3,19 @@ package com.example.storyapp.data
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
 import com.example.storyapp.data.model.DetailStoryResponse
 import com.example.storyapp.data.model.ErrorResponse
 import com.example.storyapp.data.model.ListStoryItem
 import com.example.storyapp.data.model.RegisterResponse
+import com.example.storyapp.data.model.StoryResponse
 import com.example.storyapp.data.pref.UserModel
 import com.example.storyapp.data.pref.UserPreference
 import com.example.storyapp.data.retrofit.ApiService
+import com.example.storyapp.data.paging.StoryPagingSource
 import com.google.gson.Gson
 import kotlinx.coroutines.flow.Flow
 import okhttp3.MediaType.Companion.toMediaType
@@ -65,14 +71,25 @@ class UserRepository private constructor(
         }
     }
 
-    fun getStories(token: String): LiveData<ResultState<List<ListStoryItem>>> = liveData {
-        emit(ResultState.Loading)
-        val response = apiService.getStories("Bearer $token")
-        if (response.error == false) {
-            emit(ResultState.Success(response.listStory))
-        } else {
-            emit(ResultState.Error(response.message.toString()))
-        }
+//    fun getStories(token: String): LiveData<ResultState<List<ListStoryItem>>> = liveData {
+//        emit(ResultState.Loading)
+//        val response = apiService.getStories("Bearer $token")
+//        if (response.error == false) {
+//            emit(ResultState.Success(response.listStory))
+//        } else {
+//            emit(ResultState.Error(response.message.toString()))
+//        }
+//    }
+
+    fun getStories(token: String): LiveData<PagingData<ListStoryItem>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 5
+            ),
+            pagingSourceFactory = {
+                StoryPagingSource(apiService, "Bearer $token")
+            }
+        ).liveData
     }
 
     fun getDetailStory(token: String, id: String) = liveData {
@@ -103,6 +120,18 @@ class UserRepository private constructor(
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             val errorResponse = Gson().fromJson(errorBody, RegisterResponse::class.java)
+            emit(ResultState.Error(errorResponse.message.toString()))
+        }
+    }
+
+    fun getStoriesLocation(token: String) = liveData {
+        emit(ResultState.Loading)
+        try {
+            val successResponse = apiService.getStoriesLocation("Bearer $token")
+            emit(ResultState.Success(successResponse))
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorResponse = Gson().fromJson(errorBody, StoryResponse::class.java)
             emit(ResultState.Error(errorResponse.message.toString()))
         }
     }

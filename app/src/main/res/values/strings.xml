@@ -42,4 +42,12 @@
     <string name="add_desc_description">Masukan deskripsi gambar</string>
     <string name="btn_upload_description">Tombol unggah gambar</string>
     <string name="next">Lanjut</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="check_maps">Cek Maps</string>
+    <string name="normal_type">Normal</string>
+    <string name="satellite_type">Satellite</string>
+    <string name="terrain_type">Terrain</string>
+    <string name="hybrid_type">Hybrid</string>
+    <string name="detail_image_description">Ini adalah informasi detail pengguna</string>
+    <string name="retry">Muat Ulang</string>
 </resources>

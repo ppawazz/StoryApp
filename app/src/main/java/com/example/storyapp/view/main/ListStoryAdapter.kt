@@ -3,6 +3,7 @@ package com.example.storyapp.view.main
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +14,7 @@ import com.example.storyapp.databinding.ItemStoryBinding
 import com.example.storyapp.view.detail.DetailStoryActivity
 
 class ListStoryAdapter :
-    ListAdapter<ListStoryItem, ListStoryAdapter.StoryViewHolder>(DIFF_CALLBACK) {
+    PagingDataAdapter<ListStoryItem, ListStoryAdapter.StoryViewHolder>(DIFF_CALLBACK) {
     class StoryViewHolder(private val binding: ItemStoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ListStoryItem) {
@@ -40,7 +41,9 @@ class ListStoryAdapter :
 
     override fun onBindViewHolder(holder: StoryViewHolder, position: Int) {
         val listStoryItem = getItem(position)
-        holder.bind(listStoryItem)
+        if (listStoryItem != null) {
+            holder.bind(listStoryItem)
+        }
     }
 
     companion object {

@@ -15,7 +15,7 @@ import com.example.storyapp.R
 import com.example.storyapp.data.ResultState
 import com.example.storyapp.databinding.ActivitySignupBinding
 import com.example.storyapp.utils.showToast
-import com.example.storyapp.view.ViewModelFactory
+import com.example.storyapp.utils.ViewModelFactory
 import com.example.storyapp.view.login.LoginActivity
 
 class SignupActivity : AppCompatActivity() {

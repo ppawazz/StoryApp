@@ -22,7 +22,7 @@ import com.example.storyapp.utils.getImageUri
 import com.example.storyapp.utils.reduceFileImage
 import com.example.storyapp.utils.showToast
 import com.example.storyapp.utils.uriToFile
-import com.example.storyapp.view.ViewModelFactory
+import com.example.storyapp.utils.ViewModelFactory
 import com.example.storyapp.view.main.MainActivity
 
 class AddStoryActivity : AppCompatActivity() {
@@ -37,6 +37,7 @@ class AddStoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddStoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.apply {
             uploadImage.contentDescription = getString(R.string.add_image_description)
@@ -62,6 +63,11 @@ class AddStoryActivity : AppCompatActivity() {
                 uploadImage(user.token)
             }
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun uploadImage(token: String) {
@@ -163,6 +169,5 @@ class AddStoryActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
         }
-        supportActionBar?.hide()
     }
 }
